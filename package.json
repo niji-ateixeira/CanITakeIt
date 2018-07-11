@@ -1,0 +1,42 @@
+{
+  "name": "Notice",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "lint": "eslint ./src/* --fix ",
+    "test": "jest",
+    "lol": "eslint --init"
+  },
+  "dependencies": {
+    "babel-eslint": "^8.2.3",
+    "graphql-request": "^1.6.0",
+    "lodash": "^4.17.10",
+    "prop-types": "^15.6.2",
+    "react": "16.3.1",
+    "react-native": "0.55.4",
+    "react-native-camera": "^1.1.4",
+    "react-native-collapsible": "^0.11.3",
+    "react-native-elements": "^0.19.1",
+    "react-native-router-flux": "^4.0.0-beta.31",
+    "react-native-vector-icons": "^4.6.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0"
+  },
+  "devDependencies": {
+    "babel-jest": "22.4.3",
+    "babel-preset-react-native": "4.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
+    "eslint-plugin-react-native": "^3.2.1",
+    "jest": "22.4.3",
+    "react-native-scripts": "1.14.0",
+    "react-test-renderer": "^16.3.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

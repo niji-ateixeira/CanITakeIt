@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "lint": "eslint ./src/* --fix ",
-    "test": "jest",
+    "lint:fix": "eslint ./src/* --fix ",
+    "lint": "eslint ./src/* ",
+    "test": "jest scr/ --coverage --testPathPattern .spec.js",
+    "test:update": "jest scr/ --updateSnapshot --testPathPattern .test.js",
     "lol": "eslint --init"
   },
   "dependencies": {
@@ -37,6 +39,15 @@
     "react-test-renderer": "^16.3.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "collectCoverage": true,
+    "coverageDirectory": "__coverage__",
+    "transformIgnorePatterns": ["node_modules/(?!react-native|native-base|react-navigation|react-native-fabric)"],
+    "collectCoverageFrom": [ "src/**" ],
+    "testPathIgnorePatterns": [
+      "views/containers/Home/__snapshots__",
+      "views/containers/Legal/__snapshots__",
+      "views/containers/Notice/__snapshots__"
+    ]
   }
 }

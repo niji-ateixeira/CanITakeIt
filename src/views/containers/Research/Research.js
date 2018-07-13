@@ -34,9 +34,9 @@ class Research extends React.Component {
     return (
       <View style={{
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#eefbf4',
       }}
       >
         <Text>

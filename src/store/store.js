@@ -6,13 +6,15 @@
 
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger';
 
 import CoreReducer from './coreReducer';
 import getDrugs from '../sagas/getDrugs';
 
 const sagaMiddleware = createSagaMiddleware();
 // Creation du store
-const store = createStore(CoreReducer, applyMiddleware(sagaMiddleware));
+const middlewares = [sagaMiddleware, logger];
+const store = createStore(CoreReducer, applyMiddleware(...middlewares));
 
 sagaMiddleware.run(getDrugs);
 

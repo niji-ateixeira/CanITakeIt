@@ -12,12 +12,18 @@ exports[`renders correctly 1`] = `
     }
   }
 >
+  <ActivityIndicator
+    animating={true}
+    color="#00b3b3"
+    hidesWhenStopped={true}
+    size="large"
+  />
   <Text
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
   >
-    Désolé une erreur est survenue :(
+    Chargement en cours...
   </Text>
 </View>
 `;

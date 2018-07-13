@@ -1,12 +1,15 @@
-/* eslint-disable */
+import _ from 'lodash';
 import {
   ADD_DRUG,
   ADD_DRUG_OK,
-  ADD_DRUG_KO
-} from '../actions/listDrugs'
-/* eslint-enable */
+  ADD_DRUG_KO,
+} from '../actions/listDrugs';
 
-const initialState = { listDrugs: { payload: [] } };
+const initialState = {
+  listDrugs: [],
+  ok: null,
+  fetched: false,
+};
 
 const parse = (data) => {
   const lol = Object.entries(data);
@@ -21,18 +24,26 @@ export default function ListDrugs(state = initialState, action) {
     case ADD_DRUG:
       return {
         ...state,
-        ok: 'trust',
+        ok: false,
+        fetched: true,
       };
     case ADD_DRUG_OK:
+
+      const infos = parse(action.payload.onedrug.notice);
+      const name = _.filter(infos, object => object.title === 'name');
+      const infosFinal = _.filter(infos, object => object.title !== 'name');
       return {
         ...state,
         ok: true,
-        payload: parse(action.payload.onedrug.notice),
+        name: name[0].content,
+        listDrugs: infosFinal,
+        fetched: false,
       };
     case ADD_DRUG_KO:
       return {
         ...state,
         ok: false,
+        fetched: false,
       };
     default:
       return state;

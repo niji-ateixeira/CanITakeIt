@@ -4,12 +4,16 @@ import {
   ScrollView,
   View,
 } from 'react-native';
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Accordion from 'react-native-collapsible/Accordion';
-import _ from 'lodash';
 
 import styles from './NoticeStyles';
+
+import Loader from '../../components/Loader';
+import Error from '../../components/Error';
+
 
 class Notice extends React.Component {
   renderSectionTitle = section => (
@@ -35,33 +39,51 @@ class Notice extends React.Component {
   )
 
   render() {
-    const { listDrugs } = this.props;
-    let data = listDrugs;
-    if (_.isEmpty(listDrugs)) data = [];
+    const { listDrugs, load, response } = this.props;
 
-    return (
+    let render = (
       <ScrollView style={{ flex: 1 }}>
-        <Accordion
-          sections={data}
-          renderSectionTitle={this.renderSectionTitle}
-          renderHeader={this.renderHeader}
-          renderContent={this.renderContent}
-        />
+        <Text>
+          Hmmm
+        </Text>
       </ScrollView>
     );
+
+    if (load) {
+      render = <Loader />;
+    } else if (response) {
+      render = (
+        <ScrollView style={{ flex: 1, backgroundColor: '#eefbf4' }}>
+          <Accordion
+            sections={listDrugs}
+            renderSectionTitle={() => <React.Fragment />}
+            renderHeader={(this.renderHeader)}
+            renderContent={this.renderContent}
+          />
+        </ScrollView>
+      );
+    } else {
+      render = <Error />;
+    }
+    return render;
   }
 }
 
-Notice.propTypes = {
-  listDrugs: PropTypes.arrayOf(),
-};
+// Notice.propTypes = {
+//   listDrugs: PropTypes.arrayOf(),
+//   response: PropTypes.bool(),
+//   load: PropTypes.bool(),
+// };
 
 Notice.defaultProps = {
   listDrugs: [],
+  response: false,
+  load: true,
 };
 
 const mapStateToProps = state => ({
-  listDrugs: state.listDrugs.payload,
+  listDrugs: state.listDrugs.listDrugs,
+  response: state.listDrugs.ok,
+  load: state.listDrugs.fetched,
 });
-
 export default connect(mapStateToProps)(Notice);

@@ -39,18 +39,6 @@ class Research extends React.Component {
         backgroundColor: '#eefbf4',
       }}
       >
-        <Text>
-          {value}
-        </Text>
-        <Text>
-          {type}
-        </Text>
-        <Button
-          onPress={() => this.getDrug({ data: 'data', type: 'type' })}
-          backgroundColor="#00b3b3"
-          icon={{ name: 'camera' }}
-          title="Scanner votre médicament"
-        />
         <Camera
           style={{ width: 300, height: 300 }}
           onBarCodeRead={data => this.getDrug(data)}
@@ -62,6 +50,13 @@ class Research extends React.Component {
           ]}
           permissionDialogTitle="lol"
           permissionDialogMessage="lol2"
+        />
+        <Button
+          onPress={() => this.getDrug({ data: 'data', type: 'type' })}
+          backgroundColor="#00b3b3"
+          icon={{ name: 'camera' }}
+          style={{margin: 20}}
+          title="Scanner votre médicament"
         />
       </View>
     );

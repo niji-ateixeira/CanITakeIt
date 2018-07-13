@@ -16,30 +16,25 @@ import Error from '../../components/Error';
 
 
 class Notice extends React.Component {
-  renderSectionTitle = section => (
-    <Text>
-      {section.title}
-    </Text>
-  )
 
   renderHeader = section => (
-    <View>
-      <Text style={styles.headerText}>
+    <View style={styles.containerHeader}>
+      <Text style={styles.textHeader}>
         {section.title}
       </Text>
     </View>
   )
 
   renderContent = section => (
-    <View>
-      <Text>
+    <View style={styles.containerContent}>
+      <Text style={styles.textContent}>
         {section.content}
       </Text>
     </View>
   )
 
   render() {
-    const { listDrugs, load, response } = this.props;
+    const { listDrugs, load, response, name } = this.props;
 
     let render = (
       <ScrollView style={{ flex: 1 }}>
@@ -53,7 +48,8 @@ class Notice extends React.Component {
       render = <Loader />;
     } else if (response) {
       render = (
-        <ScrollView style={{ flex: 1, backgroundColor: '#eefbf4' }}>
+        <ScrollView style={styles.container}>
+          <Text style={styles.name}>{name}</Text>
           <Accordion
             sections={listDrugs}
             renderSectionTitle={() => <React.Fragment />}
@@ -85,5 +81,6 @@ const mapStateToProps = state => ({
   listDrugs: state.listDrugs.listDrugs,
   response: state.listDrugs.ok,
   load: state.listDrugs.fetched,
+  name: state.listDrugs.name
 });
 export default connect(mapStateToProps)(Notice);

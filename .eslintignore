@@ -6,3 +6,4 @@ package.json
 app.json
 package-lock.json
 App.js
+*.spec.js

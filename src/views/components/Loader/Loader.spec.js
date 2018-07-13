@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Legal from './Legal';
+import Loader from './Loader';
 
 
 test('renders correctly', () => {
-  const tree = renderer.create(<Legal />).toJSON();
+  const tree = renderer.create(<Loader />).toJSON();
   expect(tree).toMatchSnapshot();
 });
